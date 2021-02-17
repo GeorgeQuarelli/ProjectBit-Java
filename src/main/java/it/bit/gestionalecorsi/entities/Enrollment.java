@@ -29,4 +29,16 @@ public class Enrollment {
     private LocalDate enrollDate;
     private Boolean isPayed;
     private double grade;
+
+    public Enrollment(Student student, CourseEdition courseEdition, LocalDate enrollDate,
+                      Boolean isPayed, double grade) {
+
+        this.student = student;
+        this.courseEdition = courseEdition;
+        this.enrollDate = enrollDate;
+        this.isPayed = isPayed;
+        this.grade = grade;
+
+    }
+
 }

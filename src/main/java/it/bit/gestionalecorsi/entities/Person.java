@@ -21,5 +21,25 @@ public abstract class Person {
 
     private List<Skill> skills;
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Person(){}
+
+    public Person(String firstName,String lastName,Gender gender){
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender =gender;
+
+    }
 }
