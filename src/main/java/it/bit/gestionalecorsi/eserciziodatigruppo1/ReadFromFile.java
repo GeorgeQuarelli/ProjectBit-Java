@@ -27,47 +27,38 @@ public class ReadFromFile {
         sc.useDelimiter(",");   //sets the delimiter pattern
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         List<Enrollment> list = new ArrayList<>();
-        while (sc.hasNext())  //returns a boolean value
+        while (sc.hasNext())
         {
+            //lettura file riga per riga
 
-            //System.out.print(sc.next());  //find and returns the next complete token from this scanner
+              //find and returns the next complete token from this scanner
             String name = sc.next();
             String surname = sc.next();
             String gender = sc.next();
             LocalDate localDate = LocalDate.parse(sc.next(), formatter);
             int idCourseEdition = sc.nextInt();
+            String courseTitle = sc.next();
             boolean payed = sc.nextBoolean();
-            double grade = sc.nextDouble();
+            double grade = Double.parseDouble(sc.next().trim());
+//            System.out.print(name);
 
+            //istanziare i vari enrollment
+            //aggiungere alla lista
+            list.add(createEnroll(name, surname,gender, localDate,idCourseEdition, payed, grade));
         }
         sc.close();  //closes the scanner
 
-        //lettura file riga per riga
-
-
-        //istanziare i vari enrollment
-
-
-        //aggiungere alla lista
-
-
         //ritornare la lista
-
-        return null;
+        return list;
     }
 
-    public Enrollment createEnroll(String name, String surname,String gender, LocalDate localDate,
+    private static Enrollment createEnroll(String name, String surname,String gender, LocalDate localDate,
                                    int idCourseEdition, boolean payed, double grade) {
 
-        Gender g = Gender.MALE;
-        g.
+        Gender g = gender.equals("m")?Gender.MALE:Gender.FEMALE;
+        Student s = new Student(name,surname, g);
 
-        Student s = new Student(name,surname);
-
-
-
-
-        Enrollment sign_student = new Enrollment();
+        Enrollment sign_student = new Enrollment(s, null, localDate, payed, grade);
         return sign_student;
     }
 

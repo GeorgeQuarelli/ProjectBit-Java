@@ -41,4 +41,23 @@ public class Enrollment {
 
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public CourseEdition getCourseEdition() {
+        return courseEdition;
+    }
+
+    public LocalDate getEnrollDate() {
+        return enrollDate;
+    }
+
+    public Boolean getPayed() {
+        return isPayed;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
 }

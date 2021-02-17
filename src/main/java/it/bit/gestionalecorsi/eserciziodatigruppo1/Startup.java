@@ -12,6 +12,7 @@ public class Startup {
         String path = "dati_iscrizione.csv" ;
         List<Enrollment> iscrizioni = ReadFromFile.getData(path);
 
-
+        Report report = new Report(iscrizioni);
+        report.printReport();
     }
 }
