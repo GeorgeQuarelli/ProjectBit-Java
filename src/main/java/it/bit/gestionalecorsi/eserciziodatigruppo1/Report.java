@@ -22,8 +22,8 @@ public class Report {
         System.out.println("Data di iscrizione più vecchia: " + getDate(Comparator.reverseOrder()));
         System.out.println("Data di iscrizione più vecchia: " + getOldestDate().toString());
         System.out.println("Voto più alto: " + getMaxGrade());
-        System.out.println("Voto più alto: " + getGrade((d1, d2) -> (int) (d1 * 100 - d2 * 100)));
-        System.out.println("Voto più basso: " + getGrade((d1, d2) -> (int) (d2 * 100 - d1 * 100)));
+        System.out.println("Voto più alto: " + getGrade(Comparator.naturalOrder()));
+        System.out.println("Voto più basso: " + getGrade(Comparator.reverseOrder()));
         System.out.println("Voto più basso: " + getMinGrade());
         System.out.println("Voto medio: " + ((double) Math.round(getAverageGrade() * 100)) / 100);
     }
