@@ -1,6 +1,7 @@
 package it.bit.gestionalecorsi.eserciziodatigruppo1;
 
 import it.bit.gestionalecorsi.entities.Enrollment;
+import it.bit.gestionalecorsi.entities.Gender;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -27,6 +28,7 @@ public class Report {
         System.out.println("Voto medio: " + ((double) Math.round(getAverageGrade() * 100)) / 100);
         System.out.println("La mediana è: " + getMediana());
         System.out.println("Il voto più ricorrente è: " + getModa());
+        System.out.println("Il minimo voto dei maschi è più alto di quello delle femmine? " + isSexismAlive());
 
 
     }
@@ -144,6 +146,19 @@ public class Report {
         }
         return moda;
     }
+
+    public boolean isSexismAlive() {
+
+        double maxFemmine = iscrizioni.stream()
+                .filter((en) -> en.getStudent().getGender() == Gender.FEMALE)
+                .max(Comparator.comparing(Enrollment::getGrade)).get().getGrade();
+        double minMaschi = iscrizioni.stream()
+                .filter((en) -> en.getStudent().getGender() == Gender.MALE)
+                .min(Comparator.comparing(Enrollment::getGrade)).get().getGrade();
+
+        return minMaschi > maxFemmine;
+    }
+
 
 
 }
