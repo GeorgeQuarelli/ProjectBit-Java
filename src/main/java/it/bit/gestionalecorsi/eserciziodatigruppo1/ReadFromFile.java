@@ -27,6 +27,7 @@ public class ReadFromFile {
         sc.useDelimiter(",");   //sets the delimiter pattern
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         List<Enrollment> list = new ArrayList<>();
+
         while (sc.hasNext())
         {
             //lettura file riga per riga
@@ -42,8 +43,7 @@ public class ReadFromFile {
             double grade = Double.parseDouble(sc.next().trim());
 //            System.out.print(name);
 
-            //istanziare i vari enrollment
-            //aggiungere alla lista
+            //istanziare enrollment e aggiungere alla lista
             list.add(createEnroll(name, surname,gender, localDate,idCourseEdition, payed, grade));
         }
         sc.close();  //closes the scanner
