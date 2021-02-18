@@ -42,4 +42,8 @@ public abstract class Person {
         this.gender =gender;
 
     }
+
+    public Gender getGender(){
+        return gender;
+    }
 }

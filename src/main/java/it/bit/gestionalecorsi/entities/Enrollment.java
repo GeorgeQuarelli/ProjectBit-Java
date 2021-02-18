@@ -28,10 +28,10 @@ public class Enrollment {
     private CourseEdition courseEdition;
     private LocalDate enrollDate;
     private Boolean isPayed;
-    private double grade;
+    private Double grade;
 
     public Enrollment(Student student, CourseEdition courseEdition, LocalDate enrollDate,
-                      Boolean isPayed, double grade) {
+                      Boolean isPayed, Double grade) {
 
         this.student = student;
         this.courseEdition = courseEdition;
@@ -57,7 +57,7 @@ public class Enrollment {
         return isPayed;
     }
 
-    public double getGrade() {
+    public Double getGrade() {
         return grade;
     }
 }
