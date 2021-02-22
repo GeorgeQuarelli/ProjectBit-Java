@@ -1,4 +1,4 @@
-package it.bit.gestionalecorsi.eserciziodatigruppo1;
+package it.bit.gestionalecorsi.eserciziodatigruppo1.oldway;
 
 import it.bit.gestionalecorsi.entities.Enrollment;
 import it.bit.gestionalecorsi.entities.Gender;
@@ -17,7 +17,6 @@ public class ReadFromFile {
     public static List<Enrollment> getData(String pathfile) {
 
         //apertura file
-
         Scanner sc = null;
         try {
             sc = new Scanner(new File(pathfile));
@@ -25,6 +24,8 @@ public class ReadFromFile {
             e.printStackTrace();
         }
         sc.useDelimiter(",");   //sets the delimiter pattern
+
+        // date formatter
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         List<Enrollment> list = new ArrayList<>();
 

@@ -1,8 +1,6 @@
 package it.bit.gestionalecorsi.eserciziodatigruppo1;
 
-import it.bit.gestionalecorsi.entities.Enrollment;
-
-import java.util.List;
+import java.nio.file.Path;
 
 
 public class Startup {
@@ -10,9 +8,20 @@ public class Startup {
     public static void main(String[] args) {
 
         String path = "dati_iscrizione.csv" ;
-        List<Enrollment> iscrizioni = ReadFromFile.getData(path);
 
-        Report report = new Report(iscrizioni);
-        report.printReport();
+        // creazione parser
+        Parser parser = new CsvParser(Path.of(path));
+
+        try {
+            // iniezione del parser sul controller
+            Controller controller = new Controller(parser);
+
+            // stampo il report
+            controller.printReport();
+
+        } catch (DataException e) {
+            e.printStackTrace();
+        }
+
     }
 }

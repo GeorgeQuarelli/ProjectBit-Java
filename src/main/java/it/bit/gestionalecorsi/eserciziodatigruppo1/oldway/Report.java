@@ -1,10 +1,12 @@
-package it.bit.gestionalecorsi.eserciziodatigruppo1;
+package it.bit.gestionalecorsi.eserciziodatigruppo1.oldway;
 
 import it.bit.gestionalecorsi.entities.Enrollment;
 import it.bit.gestionalecorsi.entities.Gender;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Report {
 
@@ -21,16 +23,44 @@ public class Report {
         System.out.println("Data di iscrizione più recente: " + iscrizioni.stream().max(Comparator.comparing(Enrollment::getEnrollDate)).get().getEnrollDate());
 //        System.out.println("Data di iscrizione più vecchia: " + getDate(Comparator.reverseOrder()));
         System.out.println("Data di iscrizione più vecchia: " + iscrizioni.stream().min(Comparator.comparing(Enrollment::getEnrollDate)).get().getEnrollDate());
-//        System.out.println("Voto più alto: " + getMaxGrade());
         System.out.println("Voto più alto: " + iscrizioni.stream().max(Comparator.comparing(Enrollment::getGrade)).get().getGrade());
 //        System.out.println("Voto più alto: " + getGrade(Comparator.naturalOrder()));
 //        System.out.println("Voto più basso: " + getGrade(Comparator.reverseOrder()));
         System.out.println("Voto più basso: " + iscrizioni.stream().min(Comparator.comparing(Enrollment::getGrade)).get().getGrade());
-//        System.out.println("Voto più basso: " + getMinGrade());
         System.out.println("Voto medio: " + iscrizioni.stream().reduce(0.0, (sum, element) -> sum + element.getGrade(), Double::sum) / iscrizioni.size());
+//        iscrizioni.stream().mapToDouble(Enrollment::getGrade).average().getAsDouble();
 //        System.out.println("Voto medio: " + ((double) Math.round(getAverageGrade() * 100)) / 100);
         System.out.println("La mediana è: " + getMediana());
         System.out.println("Il voto più ricorrente è: " + getModa());
+        System.out.println("Il voto più ricorrente è : " +
+                iscrizioni.stream()
+                  .collect(Collectors.groupingBy(Enrollment::getGrade, Collectors.counting()))
+                  .entrySet()
+                  .stream()
+                  .max(Map.Entry.comparingByValue())
+                  .get()
+                  .getKey());
+
+//        Stream<Enrollment> d = iscrizioni.stream().filter(s -> s.getStudent().getGender() == Gender.FEMALE);
+//        long n = d.filter(el -> el.getEnrollDate().isAfter(LocalDate.now())).count();
+//        long p = d.filter(el -> el.getEnrollDate().isBefore(LocalDate.now())).count();  // stream già utilizzato
+//
+//        long n2 = iscrizioni.stream().filter(s -> s.getStudent().getGender() == Gender.FEMALE)
+//                .filter(el -> el.getEnrollDate().isAfter(LocalDate.now()))
+//                .count();
+//        long p2 = iscrizioni.stream().filter(s -> s.getStudent().getGender() == Gender.FEMALE)
+//                .filter(el -> el.getEnrollDate().isBefore(LocalDate.now()))
+//                .count();
+//
+//        List<Enrollment> lista = iscrizioni.stream()
+//                .filter(s -> s.getStudent().getGender() == Gender.FEMALE)
+//                .collect(Collectors.toList());
+//        long n3 = lista.stream()
+//                .filter(el -> el.getEnrollDate().isBefore(LocalDate.now()))
+//                .count();
+//        long p3 = lista.stream()
+//                .filter(el -> el.getEnrollDate().isAfter(LocalDate.now()))
+//                .count();
         System.out.println("Il minimo voto dei maschi è più alto del massimo delle femmine? " + isSexismAlive());
 
     }
@@ -146,15 +176,16 @@ public class Report {
         // obsoleto
         int ricorrenzaMaggiore = 0;
         double moda = 0;
-        for (Map.Entry<Double, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > ricorrenzaMaggiore) {
-                ricorrenzaMaggiore = entry.getValue();
-                moda = entry.getKey();
-            }
-        }
+//        for (Map.Entry<Double, Integer> entry : map.entrySet()) {
+//            if (entry.getValue() > ricorrenzaMaggiore) {
+//                ricorrenzaMaggiore = entry.getValue();
+//                moda = entry.getKey();
+//            }
+//        }
 
         Set<Map.Entry<Double, Integer>> set = map.entrySet();
-        moda = set.stream().max(Comparator.comparingInt(Map.Entry::getValue)).get().getKey();
+//        moda = set.stream().max(Comparator.comparingInt(Map.Entry::getValue)).get().getKey();
+        moda = set.stream().max(Map.Entry.comparingByValue()).get().getKey();
 
         return moda;
     }
