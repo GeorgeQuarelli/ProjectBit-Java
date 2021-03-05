@@ -2,7 +2,6 @@ package it.bit.gestionalecorsi.entities;
 
 public class RealClassroom extends Classroom{
 
-
     private Equipment tech;
 
     @Override

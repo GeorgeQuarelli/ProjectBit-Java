@@ -9,7 +9,7 @@ public class Lesson {
     private LocalDateTime start;
     private LocalDateTime end;
     private Teacher teacher;
-    private List<Presence> presences;
+    private List<Attendance> attendances;
     private Classroom classroom;
 
 }

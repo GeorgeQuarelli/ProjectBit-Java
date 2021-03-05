@@ -8,5 +8,6 @@ public class Module {
     private Person teacher;
     private int durationHours;
     private List<Lesson> lessons;
+    private String description;
 
 }

@@ -1,5 +1,5 @@
 package it.bit.gestionalecorsi.entities;
 
 public enum ProcessingState {
-    RECEIVED, EVALUATING, REJECTED, APPROVED
+    RECEIVED, PENDING, REJECTED, APPROVED
 }
